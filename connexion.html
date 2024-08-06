@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <style>
+        body, header {
+            margin: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-color: #4371c5;
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+        nav a {
+            text-decoration: none;
+            color: white;
+            padding: 0 15px;
+        }
+        .container {
+            text-align: center;
+            margin-top: 60px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+        .container h1 {
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group input[type="submit"] {
+            background-color: #4371c5;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #365f9e;
+        }
+        footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>BH BANK</h1>
+    <nav>
+        <a href="register.html">register</a>
+        <a href="connexion.html">login</a>
+    </nav>
+</header>
+<div class="container">
+    <h1>Connexion</h1>
+    <form action="process_login.php" method="post">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="mdp">Mot de Passe</label>
+            <input type="password" id="mdp" name="mdp" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Se connecter">
+        </div>
+    </form>
+</div>
+<footer>
+    <p>&copy; 2024 Mon Site Web. Tous droits réservés.</p>
+</footer>
+</body>
+</html>

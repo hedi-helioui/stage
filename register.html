@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <!-- Définit l'encodage des caractères du document à UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Configure le viewport pour rendre la page responsive sur les appareils mobiles -->
+    <title>Inscription</title>
+    <!-- Définit le titre de la page qui s'affiche dans l'onglet du navigateur -->
+    <style>
+        /* Supprime les marges par défaut du corps et de l'en-tête */
+        body, header {
+            margin: 0;
+        }
+        /* Applique des styles au corps de la page */
+        body {
+            font-family: Arial, sans-serif;  /* Définit la police de caractère */
+            display: flex;  /* Utilise Flexbox pour la mise en page */
+            flex-direction: column;  /* Aligne les éléments en colonne */
+            align-items: center;  /* Centre les éléments horizontalement */
+            justify-content: center;  /* Centre les éléments verticalement */
+            height: 100vh;  /* Définit la hauteur du corps à 100% de la hauteur de la vue */
+            background-color: #f0f0f0;  /* Définit la couleur de fond à un gris clair */
+        }
+        /* Applique des styles à l'en-tête */
+        header {
+            background-color: #4371c5;  /* Définit la couleur de fond de l'en-tête à un bleu spécifique */
+            width: 100%;  /* Définit la largeur de l'en-tête à 100% de la vue */
+            padding: 10px 0;  /* Ajoute un padding en haut et en bas de 10 pixels */
+            text-align: center;  /* Centre le texte horizontalement */
+            color: white;  /* Définit la couleur du texte à blanc */
+            position: fixed;  /* Positionne l'en-tête de façon fixe */
+            top: 0;  /* Aligne l'en-tête en haut de la vue */
+            left: 0;  /* Aligne l'en-tête à gauche de la vue */
+            display: flex;  /* Utilise Flexbox pour la mise en page interne */
+            justify-content: space-between;  /* Espace les éléments de l'en-tête pour qu'ils soient aux extrémités */
+            align-items: center;  /* Centre les éléments de l'en-tête verticalement */
+            padding: 0 20px;  /* Ajoute un padding à gauche et à droite de 20 pixels */
+        }
+        /* Applique des styles à la navigation */
+        nav {
+            display: flex;  /* Utilise Flexbox pour la mise en page interne de la navigation */
+            gap: 15px;  /* Ajoute un espace de 15 pixels entre les liens */
+        }
+        /* Applique des styles aux liens de navigation */
+        nav a {
+            text-decoration: none;  /* Supprime le soulignement des liens */
+            color: white;  /* Définit la couleur du texte des liens à blanc */
+            padding: 0 50px;  /* Ajoute du padding horizontal aux liens */
+            font-weight: bold;  /* Définit la graisse de la police des liens */
+        }
+
+        /* Applique des styles au conteneur principal */
+        .container {
+            text-align: center;  /* Centre le texte à l'intérieur du conteneur */
+            margin-top: 80px;  /* Ajoute une marge en haut de 80 pixels pour compenser la hauteur de l'en-tête fixe */
+            background-color: white;  /* Définit la couleur de fond du conteneur à blanc */
+            padding: 20px;  /* Ajoute du padding à l'intérieur du conteneur */
+            border-radius: 8px;  /* Arrondit les coins du conteneur */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);  /* Ajoute une ombre légère autour du conteneur */
+            width: 300px;  /* Définit la largeur du conteneur */
+        }
+        /* Applique des styles aux titres à l'intérieur du conteneur */
+        .container h1 {
+            color: #333;  /* Définit la couleur du texte des titres à un gris foncé */
+            margin-bottom: 20px;  /* Ajoute une marge sous le titre */
+        }
+        /* Applique des styles pour les groupes de formulaire */
+        .form-group {
+            margin-bottom: 15px;  /* Ajoute un espace sous chaque groupe de formulaire */
+        }
+        .form-group label {
+            display: block;  /* Affiche les labels comme des blocs */
+            margin-bottom: 5px;  /* Ajoute un espace sous les labels */
+            font-weight: bold;  /* Définit la graisse de la police des labels */
+            color: #333;  /* Définit la couleur du texte des labels */
+        }
+        .form-group input {
+            width: 100%;  /* Définit la largeur des champs de formulaire à 100% du conteneur */
+            padding: 8px;  /* Ajoute du padding à l'intérieur des champs */
+            border: 1px solid #ccc;  /* Définit une bordure grise pour les champs */
+            border-radius: 4px;  /* Arrondit les coins des champs de formulaire */
+            font-size: 16px;  /* Définit la taille de la police des champs */
+        }
+        .form-group input:focus {
+            border-color: #4371c5;  /* Change la couleur de la bordure au focus */
+            outline: none;  /* Supprime le contour par défaut */
+        }
+        .form-group input[type="submit"] {
+            background-color: #4371c5;  /* Définit la couleur de fond du bouton de soumission */
+            color: white;  /* Définit la couleur du texte du bouton de soumission */
+            border: none;  /* Supprime la bordure du bouton de soumission */
+            cursor: pointer;  /* Change le curseur en main lorsqu'il est sur le bouton */
+            font-size: 16px;  /* Définit la taille de la police du bouton */
+            padding: 10px;  /* Ajoute du padding à l'intérieur du bouton */
+            border-radius: 4px;  /* Arrondit les coins du bouton */
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #365f9e;  /* Change la couleur de fond au survol */
+        }
+        /* Applique des styles au pied de page */
+        footer {
+            position: absolute;  /* Positionne le pied de page de façon absolue */
+            bottom: 10px;  /* Aligne le pied de page à 10 pixels du bas de la vue */
+            width: 100%;  /* Définit la largeur du pied de page à 100% de la vue */
+            text-align: center;  /* Centre le texte horizontalement */
+            color: #666;  /* Définit la couleur du texte du pied de page à un gris moyen */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BH BANK</h1>
+        <nav>
+            <a href="register.html" class="active">Inscription</a>
+            <a href="#login">Connexion</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Inscription</h1>
+        <form action="process_registration.php" method="post">
+            <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" required>
+            </div>
+            <div class="form-group">
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="mdp">Mot de Passe</label>
+                <input type="password" id="mdp" name="mdp" required>
+            </div>
+            <div class="form-group">
+                <label for="tel">Numéro de Téléphone</label>
+                <input type="tel" id="tel" name="tel" required>
+            </div>
+            <div class="form-group">
+                <label for="departement">Département</label>
+                <input type="text" id="departement" name="departement" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="S'inscrire">
+            </div>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2024 Mon Site Web. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

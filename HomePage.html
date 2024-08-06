@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <!-- Définit l'encodage des caractères du document à UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Configure le viewport pour rendre la page responsive sur les appareils mobiles -->
+    <title>Page d'Accueil</title>
+    <!-- Définit le titre de la page qui s'affiche dans l'onglet du navigateur -->
+    <style>
+        /* Supprime les marges par défaut du corps et de l'en-tête */
+        body, header {
+            margin: 0;
+        }
+        /* Applique des styles au corps de la page */
+        body {
+            font-family: Arial, sans-serif;  /* Définit la police de caractère */
+            display: flex;  /* Utilise Flexbox pour la mise en page */
+            flex-direction: column;  /* Aligne les éléments en colonne */
+            align-items: center;  /* Centre les éléments horizontalement */
+            justify-content: center;  /* Centre les éléments verticalement */
+            height: 100vh;  /* Définit la hauteur du corps à 100% de la hauteur de la vue */
+            background-color: #f0f0f0;  /* Définit la couleur de fond à un gris clair */
+        }
+        /* Applique des styles à l'en-tête */
+        header {
+            background-color: #4371c5;  /* Définit la couleur de fond de l'en-tête à un bleu spécifique */
+            width: 100%;  /* Définit la largeur de l'en-tête à 100% de la vue */
+            padding: 10px 0;  /* Ajoute un padding en haut et en bas de 10 pixels */
+            text-align: center;  /* Centre le texte horizontalement */
+            color: white;  /* Définit la couleur du texte à blanc */
+            position: fixed;  /* Positionne l'en-tête de façon fixe */
+            top: 0;  /* Aligne l'en-tête en haut de la vue */
+            left: 0;  /* Aligne l'en-tête à gauche de la vue */
+            display: flex;  /* Utilise Flexbox pour la mise en page interne */
+            justify-content: space-between;  /* Espace les éléments de l'en-tête pour qu'ils soient aux extrémités */
+            align-items: center;  /* Centre les éléments de l'en-tête verticalement */
+            padding: 0 20px;  /* Ajoute un padding à gauche et à droite de 20 pixels */
+        }
+        /* Applique des styles à la navigation */
+        nav {
+            display: flex;  /* Utilise Flexbox pour la mise en page interne de la navigation */
+            gap: 15px;  /* Ajoute un espace de 15 pixels entre les liens */
+        }
+        /* Applique des styles aux liens de navigation */
+        nav a {
+            text-decoration: none;  /* Supprime le soulignement des liens */
+            color: white;  /* Définit la couleur du texte des liens à blanc */
+            padding: 0 50px; 
+        }
+        /* Applique des styles au conteneur principal */
+        .container {
+            text-align: center;  /* Centre le texte à l'intérieur du conteneur */
+            margin-top: 60px;  /* Ajoute une marge en haut de 60 pixels pour compenser la hauteur de l'en-tête fixe */
+        }
+        /* Applique des styles aux titres à l'intérieur du conteneur */
+        .container h1 {
+            color: #333;  /* Définit la couleur du texte des titres à un gris foncé */
+        }
+        /* Applique des styles aux paragraphes à l'intérieur du conteneur */
+        .container p {
+            color: #666;  /* Définit la couleur du texte des paragraphes à un gris moyen */
+        }
+        /* Applique des styles au pied de page */
+        footer {
+            position: absolute;  /* Positionne le pied de page de façon absolue */
+            bottom: 10px;  /* Aligne le pied de page à 10 pixels du bas de la vue */
+            width: 100%;  /* Définit la largeur du pied de page à 100% de la vue */
+            text-align: center;  /* Centre le texte horizontalement */
+            color: #666;  /* Définit la couleur du texte du pied de page à un gris moyen */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="bh-bank-new-rouge-removebg-preview.png" alt="Description de l'image" width="120" height="auto">
+        <nav>
+            <a href="register.html">register</a>
+            <a href="#login">login</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Bienvenue sur notre page d'accueil</h1>
+        <p>Cette page est un exemple simple d'une page d'accueil en HTML.</p>
+    </div>
+    <footer>
+        <p>&copy; 2024 Mon Site Web. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
