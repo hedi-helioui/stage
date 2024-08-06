@@ -2,6 +2,11 @@
 session_start();
 include 'db_connection.php'; // Fichier pour la connexion à la base de données
 
+// Afficher les erreurs pour le débogage
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['mdp'];
@@ -23,6 +28,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->num_rows > 0) {
         $stmt->bind_result($id, $email, $hashed_password);
         $stmt->fetch();
+
+        // Afficher les valeurs pour le débogage
+        echo "Password from form: " . htmlspecialchars($password) . "<br>";
+        echo "Hashed password from DB: " . htmlspecialchars($hashed_password) . "<br>";
 
         if (password_verify($password, $hashed_password)) {
             // Authentification réussie
