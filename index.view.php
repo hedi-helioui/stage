@@ -147,8 +147,8 @@ $conn->close();
                             <td><?php echo htmlspecialchars($row['tel']); ?></td>
                             <td><?php echo htmlspecialchars($row['email']); ?></td>
                             <td class="actions">
-                            <a href="edit_societes.php?id=<?php echo $row['id_societe']; ?>" class="edit">Modifier</a>
-                            <a href="delete_societes.php?id=<?php echo $row['id_societe']; ?>" class="delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cete societe ?');">Supprimer</a>
+                            <a href="edit_societe.php?id=<?php echo $row['id_societe']; ?>" class="edit">Modifier</a>
+                            <a href="delete_societe.php?id=<?php echo $row['id_societe']; ?>" class="delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cete societe ?');">Supprimer</a>
                             </td>
                         </tr>
                     <?php } 
