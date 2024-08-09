@@ -48,12 +48,25 @@
     <input type="date" id="contrat_date_fin" name="contrat_date_fin" required><br>
     <label for="contrat_responsable">Responsable:</label>
     <input type="text" id="contrat_responsable" name="contrat_responsable" required><br>
-    <label for="contrat_affectation">Affectation:</label>
-    <input type="text" id="contrat_affectation" name="contrat_affectation" required><br>
+    <div class="form-group">
+        <label for="contrat_affectation">Affectation</label>
+        <select id="contrat_affectation" name="contrat_affectation" required>
+            <option value="affectation1">Affectation 1</option>
+            <option value="affectation2">Affectation 2</option>
+            <option value="affectation3">Affectation 3</option>
+            <!-- Ajoutez d'autres options ici si nécessaire -->
+        </select>
+    </div>
     <label for="contrat_projet">Projet:</label>
     <input type="text" id="contrat_projet" name="contrat_projet" required><br>
-    <label for="contrat_statut">Statut:</label>
-    <input type="text" id="contrat_statut" name="contrat_statut" required><br>
+    <div class="form-group">
+        <label for="contrat_statut">Statut</label>
+        <select id="contrat_statut" name="contrat_statut" required>
+            <option value="actif">Actif</option>
+            <option value="inactif">Inactif</option>
+            <option value="terminer">Términer</option>
+            <!-- Ajoutez d'autres options ici si nécessaire -->
+        </select>
 
     <button type="submit">Enregistrer</button>
 </form>
