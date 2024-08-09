@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['loggedin'] = true;
             $_SESSION['id'] = $id;
             $_SESSION['email'] = $email;
-            header("Location: accueil.html");
+            header("Location: index.view.php");
             exit;
         } else {
             // Mot de passe incorrect

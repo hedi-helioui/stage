@@ -1,5 +1,6 @@
 <?php
 // Inclure le fichier de connexion à la base de données
+session_start();
 include('db_connection.php');
 
 // Afficher les erreurs

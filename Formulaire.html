@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter des données</title>
+</head>
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des Intérimaires, Contrats et societes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <img src="bh-bank-new-rouge-removebg-preview.png" alt="Logo BH Bank" width="120" height="auto">
+    <nav>
+        <a href="logout.php">logout</a>
+    </nav>
+</header>
+<h1>Ajouter des données</h1>
+
+<form method="post" action="traitement.php">
+    <h2>Sociétés</h2>
+    <label for="societe_nom">Nom:</label>
+    <input type="text" id="societe_nom" name="societe_nom" required><br>
+    <label for="societe_adresse">Adresse:</label>
+    <input type="text" id="societe_adresse" name="societe_adresse" required><br>
+    <label for="societe_telephone">Téléphone:</label>
+    <input type="text" id="societe_telephone" name="societe_telephone" required><br>
+    <label for="societe_email">Email:</label>
+    <input type="email" id="societe_email" name="societe_email" required><br>
+
+    <h2>Intérimaires</h2>
+    <label for="interimaire_nom">Nom:</label>
+    <input type="text" id="interimaire_nom" name="interimaire_nom" required><br>
+    <label for="interimaire_prenom">Prénom:</label>
+    <input type="text" id="interimaire_prenom" name="interimaire_prenom" required><br>
+    <label for="interimaire_telephone">Téléphone:</label>
+    <input type="text" id="interimaire_telephone" name="interimaire_telephone" required><br>
+    <label for="interimaire_email">Email:</label>
+    <input type="email" id="interimaire_email" name="interimaire_email" required><br>
+    <label for="interimaire_competence">Compétence:</label>
+    <input type="text" id="interimaire_competence" name="interimaire_competence" required><br>
+
+    <h2>Contrats</h2>
+    <label for="contrat_date_debut">Date Début:</label>
+    <input type="date" id="contrat_date_debut" name="contrat_date_debut" required><br>
+    <label for="contrat_date_fin">Date Fin:</label>
+    <input type="date" id="contrat_date_fin" name="contrat_date_fin" required><br>
+    <label for="contrat_responsable">Responsable:</label>
+    <input type="text" id="contrat_responsable" name="contrat_responsable" required><br>
+    <label for="contrat_affectation">Affectation:</label>
+    <input type="text" id="contrat_affectation" name="contrat_affectation" required><br>
+    <label for="contrat_projet">Projet:</label>
+    <input type="text" id="contrat_projet" name="contrat_projet" required><br>
+    <label for="contrat_statut">Statut:</label>
+    <input type="text" id="contrat_statut" name="contrat_statut" required><br>
+
+    <button type="submit">Enregistrer</button>
+</form>
+</body>
+</html>
