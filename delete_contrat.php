@@ -12,7 +12,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id_contrat = intval($_GET['id']); // Assurez-vous que l'ID est un entier
 
     // Préparer et exécuter la requête de suppression
-    $sql = "DELETE FROM contrat WHERE idcontrat = ?";
+    $sql = "DELETE FROM contrat WHERE id_contrat = ?";
     $stmt = $conn->prepare($sql);
 
     if ($stmt === false) {
