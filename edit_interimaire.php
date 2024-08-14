@@ -1,6 +1,6 @@
 <?php
 // Connexion à la base de données
-$conn = new mysqli('localhost', 'root', '', 'bh bank'); // Enlever l'espace dans le nom de la base de données
+$conn = new mysqli('localhost', 'root', '', 'bh bank');
 
 // Vérification de la connexion
 if ($conn->connect_error) {
@@ -62,39 +62,126 @@ $conn->close();
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Modifier l'interimaire</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #4371c5;
+            width: 100%;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        header img {
+            margin-left: 20px;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #ffffff;
+            margin: 20px 0;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4371c5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2c5c9e;
+        }
+    </style>
 </head>
 <body>
 <header>
     <img src="bh-bank-new-rouge-removebg-preview.png" alt="Logo BH Bank" width="120" height="auto">
+    <h1>Modifier l'intérimaire</h1>
     <nav>
         <a href="index.view.php">Retour</a>
     </nav>
 </header>
-<h1>Modifier l'Intérimaire</h1>
+
+
+
 <form action="edit_interimaire.php?id=<?php echo $id_interimaire; ?>" method="post">
     <input type="hidden" name="id_interimaire" value="<?php echo $id_interimaire; ?>">
+
     <div class="form-group">
         <label for="nom">Nom</label>
         <input type="text" id="nom" name="nom" value="<?php echo htmlspecialchars($row['nom']); ?>" required>
     </div>
+
     <div class="form-group">
         <label for="prenom">Prénom</label>
         <input type="text" id="prenom" name="prenom" value="<?php echo htmlspecialchars($row['prenom']); ?>" required>
     </div>
+
     <div class="form-group">
         <label for="tel">Téléphone</label>
         <input type="text" id="tel" name="tel" value="<?php echo htmlspecialchars($row['tel']); ?>" required>
     </div>
+
     <div class="form-group">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($row['email']); ?>" required>
     </div>
+
     <div class="form-group">
         <label for="competences">Compétences</label>
         <input type="text" id="competences" name="competences" value="<?php echo htmlspecialchars($row['competences']); ?>" required>
     </div>
+
     <div class="form-group">
         <input type="submit" value="Mettre à jour">
     </div>

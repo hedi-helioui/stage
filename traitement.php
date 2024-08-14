@@ -11,8 +11,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->begin_transaction();
 
     try {
+        // Vérifier l'unicité du matricule
+        $matricule = $_POST['interimaire_matricule'];
+        $sql_check_matricule = "SELECT COUNT(*) FROM interimaire WHERE matricule = ?";
+        if ($stmt_check = $conn->prepare($sql_check_matricule)) {
+            $stmt_check->bind_param("s", $matricule);
+            $stmt_check->execute();
+            $stmt_check->bind_result($count);
+            $stmt_check->fetch();
+            $stmt_check->close();
+
+            if ($count > 0) {
+                throw new Exception("Le matricule existe déjà.");
+            }
+        } else {
+            throw new Exception("Erreur lors de la préparation de la requête de vérification du matricule: " . $conn->error);
+        }
+
         $sql_societe = "INSERT INTO societes (nom, adresse, tel, email) VALUES (?, ?, ?, ?)";
-        $sql_interimaire = "INSERT INTO interimaire (nom, prenom, tel, email, competences) VALUES (?, ?, ?, ?, ?)";
+        $sql_interimaire = "INSERT INTO interimaire (matricule, nom, prenom, tel, email, competences) VALUES (?, ?, ?, ?, ?, ?)";
         $sql_contrat = "INSERT INTO contrat (date_debut, date_fin, responsable, affectation, projet, statut) VALUES (?, ?, ?, ?, ?, ?)";
 
         // Préparer la requête pour les Sociétés
@@ -26,9 +43,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Préparer la requête pour les Intérimaires
         if ($stmt = $conn->prepare($sql_interimaire)) {
-            $stmt->bind_param("sssss", $_POST['interimaire_nom'], $_POST['interimaire_prenom'], $_POST['interimaire_telephone'], $_POST['interimaire_email'], $_POST['interimaire_competence']);
-            $stmt->execute();
-            $stmt->close();
+            // Vérifier que le matricule a exactement 6 chiffres
+            if (preg_match('/^\d{6}$/', $matricule)) {
+                $stmt->bind_param("ssssss", $matricule, $_POST['interimaire_nom'], $_POST['interimaire_prenom'], $_POST['interimaire_telephone'], $_POST['interimaire_email'], $_POST['interimaire_competence']);
+                $stmt->execute();
+                $stmt->close();
+            } else {
+                throw new Exception("Le matricule doit être exactement 6 chiffres.");
+            }
         } else {
             throw new Exception("Erreur lors de la préparation de la requête Intérimaires: " . $conn->error);
         }

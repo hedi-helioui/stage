@@ -9,7 +9,7 @@ if ($conn->connect_error) {
 
 // Vérifier si l'ID du contrat est passé en paramètre
 if (isset($_GET['id']) && !empty($_GET['id'])) {
-    $id_contrat = intval($_GET['id']); // Assurez-vous que l'ID est un entier
+    $id_contrat = intval($_GET['id']);
 
     // Récupération des données du contrat
     $sql = "SELECT * FROM contrat WHERE id_contrat = ?";
@@ -72,10 +72,97 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <title>Modifier le Contrat</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #4371c5;
+            width: 100%;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        header img {
+            margin-left: 20px;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #ffffff;
+            margin: 20px 0;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4371c5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2c5c9e;
+        }
+    </style>
 </head>
 <body>
-<h1>Modifier le Contrat</h1>
+<header>
+    <img src="bh-bank-new-rouge-removebg-preview.png" alt="Logo BH Bank" width="120" height="auto">
+    <h1>Modifier le Contrat</h1>
+    <nav>
+        <a href="index.view.php">Retour</a>
+    </nav>
+</header>
+
 <form action="edit_contrat.php?id=<?php echo $id_contrat; ?>" method="post">
     <input type="hidden" name="id_contrat" value="<?php echo htmlspecialchars($row['id_contrat']); ?>">
 
@@ -96,7 +183,11 @@ $conn->close();
 
     <div class="form-group">
         <label for="affectation">Affectation</label>
-        <input type="text" id="affectation" name="affectation" value="<?php echo htmlspecialchars($row['affectation']); ?>" required>
+        <select id="affectation" name="affectation" required>
+            <option value="affectation1" <?php echo $row['affectation'] == 'affectation1' ? 'selected' : ''; ?>>Affectation 1</option>
+            <option value="affectation2" <?php echo $row['affectation'] == 'affectation2' ? 'selected' : ''; ?>>Affectation 2</option>
+            <option value="affectation3" <?php echo $row['affectation'] == 'affectation3' ? 'selected' : ''; ?>>Affectation 3</option>
+        </select>
     </div>
 
     <div class="form-group">
@@ -106,7 +197,11 @@ $conn->close();
 
     <div class="form-group">
         <label for="statut">Statut</label>
-        <input type="text" id="statut" name="statut" value="<?php echo htmlspecialchars($row['statut']); ?>" required>
+        <select id="statut" name="statut" required>
+            <option value="actif" <?php echo $row['statut'] == 'actif' ? 'selected' : ''; ?>>Actif</option>
+            <option value="inactif" <?php echo $row['statut'] == 'inactif' ? 'selected' : ''; ?>>Inactif</option>
+            <option value="terminer" <?php echo $row['statut'] == 'terminer' ? 'selected' : ''; ?>>Terminer</option>
+        </select>
     </div>
 
     <div class="form-group">

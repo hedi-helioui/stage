@@ -2,71 +2,161 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Ajouter des données</title>
-</head>
-<head>
-    <meta charset="UTF-8">
-    <title>Gestion des Intérimaires, Contrats et societes</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #4371c5;
+            width: 100%;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        header img {
+            margin-left: 20px;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #ffffff;
+            margin: 20px 0;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h2 {
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4371c5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #4371c5;
+        }
+    </style>
 </head>
 <body>
 <header>
     <img src="bh-bank-new-rouge-removebg-preview.png" alt="Logo BH Bank" width="120" height="auto">
+    <h1>Ajouter des données</h1>
     <nav>
-        <a href="logout.php">logout</a>
+        <a href="index.view.php">Retour</a>
     </nav>
 </header>
-<h1>Ajouter des données</h1>
+
+
 
 <form method="post" action="traitement.php">
     <h2>Sociétés</h2>
     <label for="societe_nom">Nom:</label>
-    <input type="text" id="societe_nom" name="societe_nom" required><br>
+    <input type="text" id="societe_nom" name="societe_nom" required>
+
     <label for="societe_adresse">Adresse:</label>
-    <input type="text" id="societe_adresse" name="societe_adresse" required><br>
+    <input type="text" id="societe_adresse" name="societe_adresse" required>
+
     <label for="societe_telephone">Téléphone:</label>
-    <input type="text" id="societe_telephone" name="societe_telephone" required><br>
+    <input type="text" id="societe_telephone" name="societe_telephone" required>
+
     <label for="societe_email">Email:</label>
-    <input type="email" id="societe_email" name="societe_email" required><br>
+    <input type="email" id="societe_email" name="societe_email" required>
 
     <h2>Intérimaires</h2>
+    <label for="interimaire_matricule">Matricule:</label>
+    <input type="text" id="interimaire_matricule" name="interimaire_matricule" pattern="\d{6}" title="Le matricule doit être exactement 6 chiffres." required>
+
     <label for="interimaire_nom">Nom:</label>
-    <input type="text" id="interimaire_nom" name="interimaire_nom" required><br>
+    <input type="text" id="interimaire_nom" name="interimaire_nom" required>
+
     <label for="interimaire_prenom">Prénom:</label>
-    <input type="text" id="interimaire_prenom" name="interimaire_prenom" required><br>
+    <input type="text" id="interimaire_prenom" name="interimaire_prenom" required>
+
     <label for="interimaire_telephone">Téléphone:</label>
-    <input type="text" id="interimaire_telephone" name="interimaire_telephone" required><br>
+    <input type="text" id="interimaire_telephone" name="interimaire_telephone" required>
+
     <label for="interimaire_email">Email:</label>
-    <input type="email" id="interimaire_email" name="interimaire_email" required><br>
+    <input type="email" id="interimaire_email" name="interimaire_email" required>
+
     <label for="interimaire_competence">Compétence:</label>
-    <input type="text" id="interimaire_competence" name="interimaire_competence" required><br>
+    <input type="text" id="interimaire_competence" name="interimaire_competence" required>
 
     <h2>Contrats</h2>
     <label for="contrat_date_debut">Date Début:</label>
-    <input type="date" id="contrat_date_debut" name="contrat_date_debut" required><br>
+    <input type="date" id="contrat_date_debut" name="contrat_date_debut" required>
+
     <label for="contrat_date_fin">Date Fin:</label>
-    <input type="date" id="contrat_date_fin" name="contrat_date_fin" required><br>
+    <input type="date" id="contrat_date_fin" name="contrat_date_fin" required>
+
     <label for="contrat_responsable">Responsable:</label>
-    <input type="text" id="contrat_responsable" name="contrat_responsable" required><br>
-    <div class="form-group">
-        <label for="contrat_affectation">Affectation</label>
-        <select id="contrat_affectation" name="contrat_affectation" required>
-            <option value="affectation1">Affectation 1</option>
-            <option value="affectation2">Affectation 2</option>
-            <option value="affectation3">Affectation 3</option>
-            <!-- Ajoutez d'autres options ici si nécessaire -->
-        </select>
-    </div>
+    <input type="text" id="contrat_responsable" name="contrat_responsable" required>
+
+    <label for="contrat_affectation">Affectation</label>
+    <select id="contrat_affectation" name="contrat_affectation" required>
+        <option value="affectation1">Affectation 1</option>
+        <option value="affectation2">Affectation 2</option>
+        <option value="affectation3">Affectation 3</option>
+    </select>
+
     <label for="contrat_projet">Projet:</label>
-    <input type="text" id="contrat_projet" name="contrat_projet" required><br>
-    <div class="form-group">
-        <label for="contrat_statut">Statut</label>
-        <select id="contrat_statut" name="contrat_statut" required>
-            <option value="actif">Actif</option>
-            <option value="inactif">Inactif</option>
-            <option value="terminer">Términer</option>
-            <!-- Ajoutez d'autres options ici si nécessaire -->
-        </select>
+    <input type="text" id="contrat_projet" name="contrat_projet" required>
+
+    <label for="contrat_statut">Statut</label>
+    <select id="contrat_statut" name="contrat_statut" required>
+        <option value="actif">Actif</option>
+        <option value="inactif">Inactif</option>
+        <option value="terminer">Terminer</option>
+    </select>
 
     <button type="submit">Enregistrer</button>
 </form>
