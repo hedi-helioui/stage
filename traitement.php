@@ -28,13 +28,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             throw new Exception("Erreur lors de la préparation de la requête de vérification du matricule: " . $conn->error);
         }
 
-        $sql_societe = "INSERT INTO societes (nom, adresse, tel, email) VALUES (?, ?, ?, ?)";
+        // Requête pour ajouter dans la table Sociétés avec le matricule
+        $sql_societe = "INSERT INTO societes (nom, adresse, tel, email, matricule) VALUES (?, ?, ?, ?, ?)";
+
+        // Requête pour ajouter dans la table Intérimaires
         $sql_interimaire = "INSERT INTO interimaire (matricule, nom, prenom, tel, email, competences) VALUES (?, ?, ?, ?, ?, ?)";
-        $sql_contrat = "INSERT INTO contrat (date_debut, date_fin, responsable, affectation, projet, statut) VALUES (?, ?, ?, ?, ?, ?)";
+
+        // Requête pour ajouter dans la table Contrats avec le matricule
+        $sql_contrat = "INSERT INTO contrat (date_debut, date_fin, responsable, affectation, projet, statut, matricule) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         // Préparer la requête pour les Sociétés
         if ($stmt = $conn->prepare($sql_societe)) {
-            $stmt->bind_param("ssss", $_POST['societe_nom'], $_POST['societe_adresse'], $_POST['societe_telephone'], $_POST['societe_email']);
+            $stmt->bind_param("sssss", $_POST['societe_nom'], $_POST['societe_adresse'], $_POST['societe_telephone'], $_POST['societe_email'], $matricule);
             $stmt->execute();
             $stmt->close();
         } else {
@@ -57,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Préparer la requête pour les Contrats
         if ($stmt = $conn->prepare($sql_contrat)) {
-            $stmt->bind_param("ssssss", $_POST['contrat_date_debut'], $_POST['contrat_date_fin'], $_POST['contrat_responsable'], $_POST['contrat_affectation'], $_POST['contrat_projet'], $_POST['contrat_statut']);
+            $stmt->bind_param("sssssss", $_POST['contrat_date_debut'], $_POST['contrat_date_fin'], $_POST['contrat_responsable'], $_POST['contrat_affectation'], $_POST['contrat_projet'], $_POST['contrat_statut'], $matricule);
             $stmt->execute();
             $stmt->close();
         } else {
@@ -80,4 +85,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Fermer la connexion
     $conn->close();
 }
+
 ?>

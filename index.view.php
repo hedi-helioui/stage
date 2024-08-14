@@ -10,36 +10,34 @@ if ($conn->connect_error) {
 // Initialisation de la variable de recherche
 $search_matricule = isset($_GET['search_matricule']) ? $_GET['search_matricule'] : '';
 
-// Préparation de la requête SQL avec filtre si une recherche est effectuée
+// Requête pour récupérer les informations des intérimaires
 $sql_interimaires = "SELECT * FROM interimaire";
 if ($search_matricule) {
-    $search_matricule = $conn->real_escape_string($search_matricule); // Protection contre les injections SQL
+    $search_matricule = $conn->real_escape_string($search_matricule);
     $sql_interimaires .= " WHERE matricule LIKE '%$search_matricule%'";
 }
-
-// Exécution de la requête
 $result_interimaires = $conn->query($sql_interimaires);
 
-// Vérification des erreurs de requête
-if (!$result_interimaires) {
-    die("Erreur dans la requête SQL : " . $conn->error);
-}
-
-// Récupération des contrats avec le matricule d'intérimaire
-$sql_contrats = "SELECT c.*, i.matricule 
-                 FROM contrat c 
-                 LEFT JOIN interimaire i ON c.matricule = i.matricule";
+// Requête pour récupérer les contrats liés aux intérimaires
+$sql_contrats = "
+    SELECT c.*, i.matricule 
+    FROM contrat c 
+    LEFT JOIN interimaire i ON c.matricule = i.matricule
+";
 $result_contrats = $conn->query($sql_contrats);
 
-// Récupération des sociétés avec le matricule d'intérimaire
-$sql_societes = "SELECT s.*, i.matricule 
-                 FROM societes s 
-                 LEFT JOIN interimaire i ON s.matricule = i.matricule";
+// Requête pour récupérer les sociétés liées aux intérimaires
+$sql_societes = "
+    SELECT s.*, i.matricule 
+    FROM societes s 
+    LEFT JOIN interimaire i ON s.matricule = i.matricule
+";
 $result_societes = $conn->query($sql_societes);
 
 // Fermeture de la connexion à la base de données
 $conn->close();
 ?>
+
 
 
 <!DOCTYPE html>
@@ -289,7 +287,7 @@ $conn->close();
         </thead>
         <tbody>
         <?php if ($result_contrats && $result_contrats->num_rows > 0) {
-            while ($row = $result_contrats->fetch_assoc()) { ?>
+            while ($row = $result_contrats->fetch_assoc()) {  ?>
                 <tr>
                     <td><?php echo htmlspecialchars($row['date_debut']); ?></td>
                     <td><?php echo htmlspecialchars($row['date_fin']); ?></td>
@@ -297,11 +295,7 @@ $conn->close();
                     <td><?php echo htmlspecialchars($row['affectation']); ?></td>
                     <td><?php echo htmlspecialchars($row['projet']); ?></td>
                     <td><?php echo htmlspecialchars($row['statut']); ?></td>
-                    <td>
-                        <?php
-                        echo $row['matricule'] !== null ? htmlspecialchars($row['matricule']) : "Non attribué";
-                        ?>
-                    </td> <!-- Affichage du matricule ou "Non attribué" -->
+                    <td><?php echo htmlspecialchars($row['matricule']); ?></td> <!-- Ajoutez cette ligne -->
                     <td class="actions">
                         <a href="edit_contrat.php?id=<?php echo $row['id_contrat']; ?>" class="edit">Modifier</a>
                         <a href="delete_contrat.php?id=<?php echo $row['id_contrat']; ?>" class="delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce contrat ?');">Supprimer</a>
@@ -314,6 +308,7 @@ $conn->close();
             </tr>
         <?php } ?>
         </tbody>
+
     </table>
 </div>
 
@@ -340,7 +335,7 @@ $conn->close();
                     <td><?php echo htmlspecialchars($row['adresse']); ?></td>
                     <td><?php echo htmlspecialchars($row['tel']); ?></td>
                     <td><?php echo htmlspecialchars($row['email']); ?></td>
-                    <td><?php echo htmlspecialchars($row['matricule']); ?></td> <!-- Affichage du matricule -->
+                    <td><?php echo htmlspecialchars($row['matricule']); ?></td>
                     <td class="actions">
                         <a href="edit_societe.php?id=<?php echo $row['id_societe']; ?>" class="edit">Modifier</a>
                         <a href="delete_societe.php?id=<?php echo $row['id_societe']; ?>" class="delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette société ?');">Supprimer</a>
