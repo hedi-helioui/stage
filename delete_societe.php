@@ -17,7 +17,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $stmt_delete->bind_param("i", $id_societe);
 
     if ($stmt_delete->execute()) {
-        header("Location: index.view.php"); // Redirection vers la page principale après suppression
+        header("Location: liste_societes.php"); // Redirection vers la page principale après suppression
         exit;
     } else {
         echo "Erreur : " . $stmt_delete->error;

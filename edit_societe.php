@@ -50,7 +50,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             $stmt_update->bind_param("ssssi", $nom, $adresse, $tel, $email, $id_societe);
 
             if ($stmt_update->execute()) {
-                header("Location: index.view.php"); // Redirection après mise à jour
+                header("Location: liste_societes.php"); // Redirection après mise à jour
                 exit;
             } else {
                 echo "Erreur de mise à jour : " . $stmt_update->error;
