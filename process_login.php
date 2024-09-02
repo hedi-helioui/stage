@@ -8,7 +8,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
+    $matricule = $_POST['matricule'];
     $password = $_POST['mdp'];
 
     // Connexion à la base de données
@@ -18,30 +18,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Préparation de la requête
-    $sql = "SELECT id, email, mdp FROM utilisateur WHERE email = ?";
+    // Vérifier la connexion admin
+    if ($matricule === '100000' && $password === 'hedy1234') {
+        // Authentification réussie pour admin
+        $_SESSION['loggedin'] = true;
+        $_SESSION['matricule'] = $matricule;
+        $_SESSION['email'] = 'heliouihedy@gmail.com'; // Peut être ajusté selon les besoins
+        header("Location: admin.php");
+        exit;
+    }
+
+    // Préparation de la requête SQL pour les connexions normales
+    $sql = "SELECT matricule, email, mdp, authorization FROM employer WHERE matricule = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
+    if (!$stmt) {
+        die("Erreur de préparation de la requête: " . $conn->error);
+    }
+
+    $stmt->bind_param("i", $matricule);
+    if (!$stmt->execute()) {
+        die("Erreur d'exécution de la requête: " . $stmt->error);
+    }
+
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $email, $hashed_password);
+        $stmt->bind_result($stored_matricule, $email, $stored_password, $authorization);
         $stmt->fetch();
-        if (password_verify($password, $hashed_password)) {
-            // Authentification réussie
-            $_SESSION['loggedin'] = true;
-            $_SESSION['id'] = $id;
-            $_SESSION['email'] = $email;
-            header("Location: index.view.php");
-            exit;
+
+        // Comparaison du mot de passe
+        if (password_verify($password, $stored_password)) {
+            if ($authorization) {
+                // Authentification réussie
+                $_SESSION['loggedin'] = true;
+                $_SESSION['matricule'] = $stored_matricule;
+                $_SESSION['email'] = $email;
+                header("Location: index.view.php");
+                exit;
+            } else {
+                echo "Votre compte n'est pas autorisé.";
+            }
         } else {
-            // Mot de passe incorrect
-            echo "Invalid password.";
+            echo "Mot de passe incorrect.";
         }
     } else {
-        // Email incorrect
-        echo "No account found with that email.";
+        echo "Aucun compte trouvé avec cette matricule.";
     }
 
     $stmt->close();
